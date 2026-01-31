@@ -14,4 +14,10 @@ CHIP PC {
     
     PARTS:
     //// Replace this comment with your code.
+    Add16(a= oi, b[0]= true, out= ico);
+    Mux16(a= ico, b= in, sel= load, out= ilo);
+    Mux16(a= ilo, b= false, sel= reset, out= io);
+    Or(a= inc, b= load, out= il);
+    Or(a= il, b= reset, out= ilr);
+    Register(in= io, load= ilr, out= oi, out= out);
 }
